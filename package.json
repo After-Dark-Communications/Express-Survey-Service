@@ -5,13 +5,16 @@
   "main": "api.js",
   "scripts": {
     "run": "node src/api.js",
-    "dev": "nodemon src/api.js"
+    "dev": "nodemon src/api.js",
+    "swagger-autogen": "node src/utils/swagger.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3",
-    "mongoose": "^6.2.8"
+    "mongoose": "^6.2.8",
+    "swagger-autogen": "^2.20.5",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
