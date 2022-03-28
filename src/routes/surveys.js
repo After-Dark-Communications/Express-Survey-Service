@@ -2,9 +2,11 @@ const express = require('express')
 const router = express.Router()
 
 const Survey = require('../database/models/Survey')
-const getSurveyById = require('../middleware/getters/getSurveyById')
-const createSurveyRequest = require('../middleware/requests/createSurveyRequest')
-const updateSurveyRequest = require('../middleware/requests/updateSurveyRequest')
+const Response = require('../database/models/Response')
+
+const getSurveyById = require('../middleware/getters/surveys/getSurveyById')
+const createSurveyRequest = require('../middleware/requests/surveys/createSurveyRequest')
+const updateSurveyRequest = require('../middleware/requests/surveys/updateSurveyRequest')
 
 // Getting all
 router.get('/', async (req, res) => {
@@ -65,6 +67,16 @@ router.delete('/:id', getSurveyById, async (req, res) => {
 	} catch (err) {
 		res.status(500).json({ message: err.message })
 	}
+})
+
+// Getting responses
+router.get('/:id/responses', getSurveyById, async (req, res) => {
+    try {
+		const responses = await Response.find({survey: res.survey.id})
+		res.json(responses)
+    } catch(err) {
+		res.status(500).json({ message: err.message })
+    }
 })
 
 module.exports = router

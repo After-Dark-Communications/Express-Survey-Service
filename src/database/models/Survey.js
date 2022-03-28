@@ -8,6 +8,10 @@ const questionSchema = mongoose.Schema({
     type: {
         type: String,
         required: true
+    },
+    isRequired: {
+        type: Boolean,
+        required: true
     }
 })
 
