@@ -10,9 +10,12 @@ const updateSurveyRequest = require('../middleware/requests/surveys/updateSurvey
 
 // Getting all
 router.get('/', async (req, res) => {
+    // #swagger.tags = ['Survey']
+    // #swagger.description = 'Get all surveys in database.'
     try {
 		const surveys = await Survey.find()
 		res.json(surveys)
+        // #swagger.responses[200] = {schema:[{$ref:"#/definitions/Survey"}]}
     } catch(err) {
 		res.status(500).json({ message: err.message })
     }
@@ -20,11 +23,18 @@ router.get('/', async (req, res) => {
 
 // Getting one
 router.get('/:id', getSurveyById, async (req, res) => {
+    // #swagger.tags = ['Survey']
+    // #swagger.description = 'Get survey by ID.'
+    // #swagger.parameters['id'] = {description: "ID of the survey"}
     res.json(res.survey)
+    // #swagger.responses[200] = {schema:{$ref:"#/definitions/Survey"}}
 })
 
 // Create one
 router.post('/', createSurveyRequest, async (req, res) => {
+    // #swagger.tags = ['Survey']
+    // #swagger.description = 'Create survey.'
+    // #swagger.parameters['survey'] = {in:'body',schema:{$ref:"#/definitions/AddSurvey"}}
     const survey = new Survey({
 		name: req.body.name,
 		type: req.body.type,
@@ -34,6 +44,7 @@ router.post('/', createSurveyRequest, async (req, res) => {
 	try {
 		const newSurvey = await survey.save()
 		res.status(201).json(newSurvey)
+        // #swagger.responses[201] = {schema:{$ref:"#/definitions/Survey"}}
 	} catch (err) {
 		res.status(500).json({ message: err.message })
 	}
@@ -41,6 +52,8 @@ router.post('/', createSurveyRequest, async (req, res) => {
 
 // Updating one
 router.patch('/:id', updateSurveyRequest, getSurveyById, async (req, res) => {
+    // #swagger.tags = ['Survey']
+    // #swagger.description = 'Update survey by ID.'
 	if (req.body.name) {
 		res.survey.name = req.body.name
 	}
@@ -54,6 +67,7 @@ router.patch('/:id', updateSurveyRequest, getSurveyById, async (req, res) => {
 	try {
 		const updatedSurvey = await res.survey.save()
 		res.send(updatedSurvey)
+        // #swagger.responses[200] = {schema:{$ref:"#/definitions/Survey"}}
 	} catch(err) {
 		res.status(500).json({ message: err.message })
 	}
@@ -61,6 +75,8 @@ router.patch('/:id', updateSurveyRequest, getSurveyById, async (req, res) => {
 
 // Deleting one
 router.delete('/:id', getSurveyById, async (req, res) => {
+    // #swagger.tags = ['Survey']
+    // #swagger.description = 'Delete survey by ID.'
 	try {
 		await res.survey.remove()
 		res.json({ message: 'Deleted survey' })
@@ -71,9 +87,12 @@ router.delete('/:id', getSurveyById, async (req, res) => {
 
 // Getting responses
 router.get('/:id/responses', getSurveyById, async (req, res) => {
+    // #swagger.tags = ['Survey']
+    // #swagger.description = 'Get all responses of survey.'
     try {
 		const responses = await Response.find({survey: res.survey.id})
 		res.json(responses)
+        // #swagger.responses[200] = {schema:[{$ref:"#/definitions/Response"}]}
     } catch(err) {
 		res.status(500).json({ message: err.message })
     }
