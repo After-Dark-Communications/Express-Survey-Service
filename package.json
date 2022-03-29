@@ -6,7 +6,7 @@
   "scripts": {
     "run": "node src/api.js",
     "dev": "nodemon src/api.js",
-    "swagger-autogen": "node src/utils/swagger.js"
+    "swagger-autogen": "node src/docs/swagger.js"
   },
   "author": "",
   "license": "ISC",
