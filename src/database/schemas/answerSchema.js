@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const questionSchema = require("./questionSchema")
 
-exports.answerSchema = mongoose.Schema({
+module.exports = mongoose.Schema({
     question: {
         type: questionSchema,
         required: true

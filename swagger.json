@@ -203,35 +203,6 @@
             "description": "Internal Server Error"
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Response"
-        ],
-        "description": "Create response.",
-        "parameters": [
-          {
-            "name": "response",
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/AddResponse"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/Response"
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
       }
     },
     "/responses/{id}": {
@@ -264,6 +235,45 @@
           }
         }
       },
+      "post": {
+        "tags": [
+          "Response"
+        ],
+        "description": "Create response.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the survey"
+          },
+          {
+            "name": "response",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AddResponse"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Response"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Response"
@@ -279,8 +289,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"
@@ -335,8 +345,8 @@
                 "items": {}
               },
               "required": {
-                "type": "string",
-                "example": "true"
+                "type": "boolean",
+                "example": true
               }
             }
           }
@@ -390,8 +400,8 @@
                 "items": {}
               },
               "required": {
-                "type": "string",
-                "example": "false"
+                "type": "boolean",
+                "example": false
               }
             },
             "required": [
@@ -415,10 +425,6 @@
           "type": "string",
           "example": "123456"
         },
-        "survey": {
-          "type": "string",
-          "example": "123456"
-        },
         "surveyTaker": {
           "type": "string",
           "example": "John Doe"
@@ -432,13 +438,40 @@
                 "type": "string",
                 "example": "123456"
               },
-              "question": {
-                "type": "string",
-                "example": "123456"
-              },
               "answer": {
                 "type": "string",
-                "example": "8/10"
+                "example": "I rate it 10 out of 10"
+              },
+              "question": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "example": "123456"
+                  },
+                  "question": {
+                    "type": "string",
+                    "example": "How would you rate your experience?"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "text"
+                  },
+                  "options": {
+                    "type": "array",
+                    "example": [],
+                    "items": {}
+                  },
+                  "required": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                },
+                "required": [
+                  "question",
+                  "type",
+                  "required"
+                ]
               }
             }
           }
@@ -452,10 +485,6 @@
     "AddResponse": {
       "type": "object",
       "properties": {
-        "survey": {
-          "type": "string",
-          "example": "123456"
-        },
         "surveyTaker": {
           "type": "string",
           "example": "John Doe"
@@ -465,20 +494,42 @@
           "items": {
             "type": "object",
             "properties": {
-              "question": {
-                "type": "string",
-                "example": "123456"
-              },
               "answer": {
                 "type": "string",
-                "example": "8/10"
+                "example": "I rate it 10 out of 10"
+              },
+              "question": {
+                "type": "object",
+                "properties": {
+                  "question": {
+                    "type": "string",
+                    "example": "How would you rate your experience?"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "text"
+                  },
+                  "options": {
+                    "type": "array",
+                    "example": [],
+                    "items": {}
+                  },
+                  "required": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                },
+                "required": [
+                  "question",
+                  "type",
+                  "required"
+                ]
               }
             }
           }
         }
       },
       "required": [
-        "survey",
         "surveyTaker"
       ]
     }

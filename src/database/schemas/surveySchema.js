@@ -21,7 +21,7 @@ module.exports = mongoose.Schema({
         required: true
 	},
     responses: {
-        type: [responseSchema],
+        type: [], //{type: mongoose.Schema.Types.ObjectId, ref: 'Friend'}
         required: false
     },
     created: {
