@@ -28,25 +28,31 @@ const setup = {
         Survey: {
             _id: "123456",
             name: "Dinner in Motion survey",
-            type: "survey",
+            description: "Dinner in Motion survey description",
+            visibility: "private",
             questions: [
                 {
                     _id: "123456",
                     question: "How would you rate your experience?",
-                    type: "text-input",
-                    isRequired: "true"
+                    type: "text",
+                    options: [],
+                    required: "true"
                 }
             ],
-            created: "2022-03-22T00:00:00.000Z"
+            responses: [],
+            created: "2022-01-01T00:00:00.000Z",
+            updated: "2022-01-01T00:00:00.000Z"
         },
         AddSurvey: {
             $name: "Dinner in Motion survey",
-            $type: "survey",
-            questions: [
+            $description: "Dinner in Motion survey description",
+            visibility: "public",
+            $questions: [
                 {
-                    question: "How would you rate your experience?",
-                    type: "text-input",
-                    isRequired: "true"
+                    $question: "How would you rate your experience?",
+                    $type: "text",
+                    options: [],
+                    $required: "false"
                 }
             ]
         },

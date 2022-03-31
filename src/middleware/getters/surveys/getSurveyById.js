@@ -6,7 +6,7 @@ module.exports = async function getSurveyById(req, res, next) {
 		if (survey == null) {
             return res.status(404).json({ message: 'Cannot find survey'})
 		}
-        res.survey = survey
+        req.survey = survey
 	} catch (err) {
 		return res.status(500).json({ message: err.message})
 	}

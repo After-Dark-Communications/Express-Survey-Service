@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-exports.questionSchema = mongoose.Schema({
+module.exports = mongoose.Schema({
     question: {
         type: String,
         required: true
