@@ -6,7 +6,7 @@ module.exports = async function getResponseById(req, res, next) {
 		if (response == null) {
             return res.status(404).json({ message: 'Cannot find response'})
 		}
-        res.response = response
+        req.response = response
 	} catch (err) {
 		return res.status(500).json({ message: err.message})
 	}

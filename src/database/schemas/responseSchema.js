@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const answerSchema = require('./answerSchema')
 
-exports.responseSchema = mongoose.Schema({
+module.exports = mongoose.Schema({
     surveyTaker: {
         type: String,
         required: true

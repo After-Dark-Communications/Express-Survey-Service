@@ -36,7 +36,7 @@ const setup = {
                     question: "How would you rate your experience?",
                     type: "text",
                     options: [],
-                    required: "true"
+                    required: true
                 }
             ],
             responses: [],
@@ -52,30 +52,39 @@ const setup = {
                     $question: "How would you rate your experience?",
                     $type: "text",
                     options: [],
-                    $required: "false"
+                    $required: false
                 }
             ]
         },
         Response: {
             _id: "123456",
-            survey: "123456",
             surveyTaker: "John Doe",
             answers: [
                 {
                     _id: "123456",
-                    question: "123456",
-                    answer: "8/10"
+                    "answer": "I rate it 10 out of 10",
+                    "question": {
+                        _id: "123456",
+                        $question: "How would you rate your experience?",
+                        $type: "text",
+                        options: [],
+                        $required: true
+                    }
                 }
             ],
             created: "2022-03-22T00:00:00.000Z"
         },
         AddResponse: {
-            $survey: "123456",
             $surveyTaker: "John Doe",
             answers: [
                 {
-                    question: "123456",
-                    answer: "8/10"
+                    "answer": "I rate it 10 out of 10",
+                    "question": {
+                        $question: "How would you rate your experience?",
+                        $type: "text",
+                        options: [],
+                        $required: true
+                    }
                 }
             ]
         },
