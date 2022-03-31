@@ -6,3 +6,6 @@ npm run start
 
 ### Start server with hot-reload
 npm run dev
+
+### Generate Swagger documentation
+npm run swagger-autogen
