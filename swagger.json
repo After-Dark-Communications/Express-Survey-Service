@@ -123,24 +123,14 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID of the survey"
           },
           {
-            "name": "body",
+            "name": "survey",
             "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "type": {
-                  "example": "any"
-                },
-                "questions": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/AddSurvey"
             }
           }
         ],
@@ -172,48 +162,13 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID of the survey"
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/surveys/{id}/responses": {
-      "get": {
-        "tags": [
-          "Survey"
-        ],
-        "description": "Get all responses of survey.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Response"
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
+          "204": {
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"
@@ -349,9 +304,13 @@
           "type": "string",
           "example": "Dinner in Motion survey"
         },
-        "type": {
+        "description": {
           "type": "string",
-          "example": "survey"
+          "example": "Dinner in Motion survey description"
+        },
+        "visibility": {
+          "type": "string",
+          "example": "private"
         },
         "questions": {
           "type": "array",
@@ -368,18 +327,32 @@
               },
               "type": {
                 "type": "string",
-                "example": "text-input"
+                "example": "text"
               },
-              "isRequired": {
+              "options": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "required": {
                 "type": "string",
                 "example": "true"
               }
             }
           }
         },
+        "responses": {
+          "type": "array",
+          "example": [],
+          "items": {}
+        },
         "created": {
           "type": "string",
-          "example": "2022-03-22T00:00:00.000Z"
+          "example": "2022-01-01T00:00:00.000Z"
+        },
+        "updated": {
+          "type": "string",
+          "example": "2022-01-01T00:00:00.000Z"
         }
       }
     },
@@ -390,9 +363,13 @@
           "type": "string",
           "example": "Dinner in Motion survey"
         },
-        "type": {
+        "description": {
           "type": "string",
-          "example": "survey"
+          "example": "Dinner in Motion survey description"
+        },
+        "visibility": {
+          "type": "string",
+          "example": "public"
         },
         "questions": {
           "type": "array",
@@ -405,19 +382,30 @@
               },
               "type": {
                 "type": "string",
-                "example": "text-input"
+                "example": "text"
               },
-              "isRequired": {
+              "options": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "required": {
                 "type": "string",
-                "example": "true"
+                "example": "false"
               }
-            }
+            },
+            "required": [
+              "question",
+              "type",
+              "required"
+            ]
           }
         }
       },
       "required": [
         "name",
-        "type"
+        "description",
+        "questions"
       ]
     },
     "Response": {

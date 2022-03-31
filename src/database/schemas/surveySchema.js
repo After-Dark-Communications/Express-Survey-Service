@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const questionSchema = require('./questionSchema')
 const responseSchema = require('./responseSchema')
 
-exports.surveySchema = mongoose.Schema({
+module.exports = mongoose.Schema({
     name: {
 		type: String,
 		required: true
@@ -13,7 +13,7 @@ exports.surveySchema = mongoose.Schema({
 	},
     visibility: {
         type: String,
-        required: true,
+        required: false,
         default: 'private'
     },
 	questions: {

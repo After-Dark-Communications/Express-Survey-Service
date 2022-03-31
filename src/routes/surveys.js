@@ -33,9 +33,11 @@ router.post('/', createSurveyRequest, async (req, res) => {
 })
 
 // Updating one
-router.patch('/:id', updateSurveyRequest, getSurveyById, async (req, res) => {
+router.patch('/:id', getSurveyById, updateSurveyRequest, async (req, res) => {
     // #swagger.tags = ['Survey']
     // #swagger.description = 'Update survey by ID.'
+    // #swagger.parameters['id'] = {description: "ID of the survey"}
+    // #swagger.parameters['survey'] = {in:'body',schema:{$ref:"#/definitions/AddSurvey"}}
 	surveyController.update(req, res)
 	// #swagger.responses[200] = {schema:{$ref:"#/definitions/Survey"}}
 })
@@ -44,16 +46,9 @@ router.patch('/:id', updateSurveyRequest, getSurveyById, async (req, res) => {
 router.delete('/:id', getSurveyById, async (req, res) => {
     // #swagger.tags = ['Survey']
     // #swagger.description = 'Delete survey by ID.'
+    // #swagger.parameters['id'] = {description: "ID of the survey"}
 	surveyController.destroy(req, res)
 	// #swagger.responses[204]
-})
-
-// Getting responses
-router.get('/:id/responses', getSurveyById, async (req, res) => {
-    // #swagger.tags = ['Survey']
-    // #swagger.description = 'Get all responses of survey.'
-	surveyController.showResponses(req, res)
-	// #swagger.responses[200] = {schema:[{$ref:"#/definitions/Response"}]}
 })
 
 module.exports = router
