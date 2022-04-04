@@ -33,7 +33,7 @@
         "tags": [
           "Survey"
         ],
-        "description": "Get all surveys in database.",
+        "description": "Get all surveys",
         "parameters": [],
         "responses": {
           "200": {
@@ -83,15 +83,15 @@
         }
       }
     },
-    "/surveys/{id}": {
+    "/surveys/{survey}": {
       "get": {
         "tags": [
           "Survey"
         ],
-        "description": "Get survey by ID.",
+        "description": "Get survey by ID",
         "parameters": [
           {
-            "name": "id",
+            "name": "survey",
             "in": "path",
             "required": true,
             "type": "string",
@@ -117,18 +117,19 @@
         "tags": [
           "Survey"
         ],
-        "description": "Update survey by ID.",
+        "description": "Update survey by ID",
         "parameters": [
           {
-            "name": "id",
+            "name": "survey",
             "in": "path",
             "required": true,
-            "type": "string",
-            "description": "ID of the survey"
+            "type": "string"
           },
           {
             "name": "survey",
             "in": "body",
+            "required": true,
+            "description": "ID of the survey",
             "schema": {
               "$ref": "#/definitions/AddSurvey"
             }
@@ -156,10 +157,10 @@
         "tags": [
           "Survey"
         ],
-        "description": "Delete survey by ID.",
+        "description": "Delete survey by ID",
         "parameters": [
           {
-            "name": "id",
+            "name": "survey",
             "in": "path",
             "required": true,
             "type": "string",
@@ -179,12 +180,49 @@
         }
       }
     },
+    "/surveys/{survey}/responses": {
+      "get": {
+        "tags": [
+          "Survey"
+        ],
+        "description": "Get responses for survey",
+        "parameters": [
+          {
+            "name": "survey",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the survey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Response"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/responses/": {
       "get": {
         "tags": [
           "Response"
         ],
-        "description": "Get all responses in database.",
+        "description": "Get all responses",
         "parameters": [],
         "responses": {
           "200": {
@@ -205,15 +243,15 @@
         }
       }
     },
-    "/responses/{id}": {
+    "/responses/{response}": {
       "get": {
         "tags": [
           "Response"
         ],
-        "description": "Get response by ID.",
+        "description": "Get response by ID",
         "parameters": [
           {
-            "name": "id",
+            "name": "response",
             "in": "path",
             "required": true,
             "type": "string",
@@ -235,14 +273,42 @@
           }
         }
       },
+      "delete": {
+        "tags": [
+          "Response"
+        ],
+        "description": "Delete response",
+        "parameters": [
+          {
+            "name": "response",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the response"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/responses/{survey}": {
       "post": {
         "tags": [
           "Response"
         ],
-        "description": "Create response.",
+        "description": "Create response",
         "parameters": [
           {
-            "name": "id",
+            "name": "survey",
             "in": "path",
             "required": true,
             "type": "string",
@@ -265,32 +331,6 @@
           },
           "400": {
             "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Response"
-        ],
-        "description": "Delete response.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "ID of the response"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
           },
           "404": {
             "description": "Not Found"
