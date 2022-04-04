@@ -23,6 +23,15 @@ router.get('/:id', getSurveyById, async (req, res) => {
     // #swagger.responses[200] = {schema:{$ref:"#/definitions/Survey"}}
 })
 
+// Get all for survey
+router.get('/:survey/responses', getSurveyById, async (req, res) => {
+    // #swagger.tags = ['Survey']
+    // #swagger.description = 'Get responses for survey'
+    // #swagger.parameters['survey'] = {description: "ID of the survey"}
+	controller.showResponses(req, res)
+    // #swagger.responses[200] = {schema:[{$ref:"#/definitions/Response"}]}
+})
+
 // Create one
 router.post('/', createSurveyRequest, async (req, res) => {
     // #swagger.tags = ['Survey']

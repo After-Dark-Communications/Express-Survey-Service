@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 const questionSchema = require('./question.schema')
-const responseSchema = require('./response.schema')
 
 module.exports = mongoose.Schema({
     name: {
@@ -21,7 +20,7 @@ module.exports = mongoose.Schema({
         required: true
 	},
     responses: {
-        type: [], //{type: mongoose.Schema.Types.ObjectId, ref: 'Friend'}
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Response'}],
         required: false
     },
     created: {
