@@ -1,4 +1,4 @@
-const Survey = require('../../../database/models/Survey')
+const Survey = require('../../database/models/Survey')
 
 module.exports = function createSurveyRequest(req, res, next) {
     // Name rules

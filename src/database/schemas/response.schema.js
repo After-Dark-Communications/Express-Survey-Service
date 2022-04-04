@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const answerSchema = require('./answerSchema')
+const answerSchema = require('./answer.schema')
 
 module.exports = mongoose.Schema({
     surveyTaker: {

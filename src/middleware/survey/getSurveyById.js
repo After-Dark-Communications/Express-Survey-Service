@@ -1,4 +1,4 @@
-const Survey = require('../../../database/models/Survey')
+const Survey = require('../../database/models/Survey')
 
 module.exports = async function getSurveyById(req, res, next) {
 	try {

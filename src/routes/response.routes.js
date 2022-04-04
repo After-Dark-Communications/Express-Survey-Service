@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const responseController = require('../controllers/responseController')
-const getResponseById = require('../middleware/getters/responses/getResponseById')
-const getSurveyById = require('../middleware/getters/surveys/getSurveyById')
-const createResponseRequest = require('../middleware/requests/responses/createResponseRequest')
+const responseController = require('../controllers/response.controller')
+const getResponseById = require('../middleware/response/getResponseById')
+const getSurveyById = require('../middleware/survey/getSurveyById')
+const createResponseRequest = require('../middleware/response/createResponseRequest')
 
 // Get all
 router.get('/', async (req, res) => {

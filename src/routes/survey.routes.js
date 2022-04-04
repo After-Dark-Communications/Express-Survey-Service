@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const surveyController = require('../controllers/surveyController')
-const getSurveyById = require('../middleware/getters/surveys/getSurveyById')
-const createSurveyRequest = require('../middleware/requests/surveys/createSurveyRequest')
-const updateSurveyRequest = require('../middleware/requests/surveys/updateSurveyRequest')
+const surveyController = require('../controllers/survey.controller')
+const getSurveyById = require('../middleware/survey/getSurveyById')
+const createSurveyRequest = require('../middleware/survey/createSurveyRequest')
+const updateSurveyRequest = require('../middleware/survey/updateSurveyRequest')
 
 // Get all
 router.get('/', (req, res) => {

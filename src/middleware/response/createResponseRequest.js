@@ -1,4 +1,4 @@
-const Response = require('../../../database/models/Response')
+const Response = require('../../database/models/Response')
 
 module.exports = function createResponseRequest(req, res, next) {
     if (!req.body.surveyTaker) {

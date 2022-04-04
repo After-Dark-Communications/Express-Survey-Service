@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
-const questionSchema = require('./questionSchema')
-const responseSchema = require('./responseSchema')
+const questionSchema = require('./question.schema')
+const responseSchema = require('./response.schema')
 
 module.exports = mongoose.Schema({
     name: {
