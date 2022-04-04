@@ -13,6 +13,16 @@ exports.show = async function(req, res) {
     res.json(req.survey)
 }
 
+exports.showResponses = function(req, res) {
+	Survey.findById(req.params.survey)
+		.populate('responses')
+		.exec((err, responses) => {
+			if (err) return res.status(500).json({ message: err.message })
+
+			res.json(responses)
+		})
+}
+
 exports.store = async function(req, res) {
 	try {
 		const newSurvey = await req.survey.save()
