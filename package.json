@@ -4,7 +4,7 @@
   "description": "",
   "main": "api.js",
   "scripts": {
-    "run": "node src/api.js",
+    "start": "node src/api.js",
     "dev": "nodemon src/api.js",
     "swagger-autogen": "node src/docs/swagger.js"
   },
