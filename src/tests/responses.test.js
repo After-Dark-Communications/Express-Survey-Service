@@ -10,7 +10,8 @@ beforeEach((done) => {
     useUnifiedTopology: true
   })
   const db = mongoose.connection
-  db.once('open', () => console.log('Connected to Database'))
+  db.on('error', (error) => console.error(error))
+  db.once('open', () => done())
 })
 
 test('GET /api/responses', async () => {
