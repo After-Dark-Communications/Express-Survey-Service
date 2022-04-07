@@ -5,7 +5,7 @@ const Survey = require('../database/models/Survey')
 const Response = require('../database/models/Response')
 
 beforeEach((done) => {
-  mongoose.connect("mongodb://admin:root@mongo:27017/test", { 
+  mongoose.connect("mongodb://admin:root@127.0.0.1:27017/test", { 
     useNewUrlParser: true, 
     useUnifiedTopology: true
   })
