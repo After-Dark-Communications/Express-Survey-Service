@@ -340,6 +340,20 @@
           }
         }
       }
+    },
+    "/swagger/": {
+      "get": {
+        "tags": [
+          "Documentation"
+        ],
+        "description": "Get swagger.json",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "definitions": {
