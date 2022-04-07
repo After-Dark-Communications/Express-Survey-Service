@@ -27,7 +27,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x]
         mongodb-version: ['5.0']
 
     steps:
@@ -44,4 +44,6 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
 
+      - run: npm ci
+      - run: npm build --if-present
       - run: npm test
