@@ -10,6 +10,7 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
+
     services:
       mongo:
         image: mongo
@@ -23,16 +24,28 @@ jobs:
               --health-interval 10s
               --health-timeout 5s
               --health-retries 5
+
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
+        mongodb-version: ['4.2', '4.4', '5.0']
+
     steps:
+      - name: Git checkout
       - uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm ci
-      - run: npm run build --if-present
+      
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+          mongodb-username: admin
+          mongodb-password: root
+          mongodb-db: test
+          
       - run: npm test
