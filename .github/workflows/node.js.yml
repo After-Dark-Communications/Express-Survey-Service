@@ -13,7 +13,7 @@ jobs:
 
     services:
       mongo:
-        name: test-mongo
+        container-name: test-mongo
         image: mongo
         env:
           MONGO_INITDB_ROOT_USERNAME: admin
