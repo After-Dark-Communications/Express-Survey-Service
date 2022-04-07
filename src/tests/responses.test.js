@@ -12,10 +12,9 @@ beforeEach((done) => {
   const db = mongoose.connection
   db.on('error', (error) => console.error(error))
   db.once('open', () => done())
-})
+}, 30000)
 
 test('GET /api/responses', async () => {
-  jest.setTimeout(30000)
   const response = await Response.create({
     surveyTaker: 'johndoe',
     answers: [{
