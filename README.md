@@ -1,14 +1,14 @@
 # Q1-2022-Express-Survey-Service
 Survey Service for group project made in Express
 
-### Install dependencies
-npm install
+### After cloning repo
+```npm install``` to install dependencies
 
-### Start server
-npm run start
+add ```.env``` file to root
 
-### Start server with hot-reload
-npm run dev
+### Commands
+```npm run start``` to start server
 
-### Generate Swagger documentation
-npm run swagger-autogen
+```npm run dev``` to start server with hot-relaod
+
+```npm run swagger-autogen``` to generate swagger docs
