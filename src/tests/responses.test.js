@@ -33,7 +33,7 @@ test('GET /api/responses', async () => {
       expect(res.body[0].surveyTaker).toBe(response.surveyTaker)
       expect(res.body[0].answers[0]._id).toBe(response.answers[0]._id.toString())
     })
-})
+}, 30000)
 
 test('GET /api/responses/:response', async () => {
   const response = await Response.create({
