@@ -18,6 +18,11 @@ jobs:
           MONGO_INITDB_ROOT_PASSWORD: root
         ports:
           - 27017:27017
+        options: >-
+              --health-cmd mongo
+              --health-interval 10s
+              --health-timeout 5s
+              --health-retries 5
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
