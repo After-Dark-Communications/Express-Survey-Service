@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
-        mongodb-version: ['4.2', '4.4', '5.0']
+        mongodb-version: ['5.0']
 
     steps:
       - uses: actions/checkout@v3
@@ -45,5 +45,5 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
           
       - run: install
-      
+
       - run: npm test
