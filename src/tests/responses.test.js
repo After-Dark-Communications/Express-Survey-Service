@@ -5,9 +5,12 @@ const Survey = require('../database/models/Survey')
 const Response = require('../database/models/Response')
 
 beforeEach((done) => {
-  mongoose.connect("mongodb://admin:root@mongo:27017/test",
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => done())
+  mongoose.connect("mongodb://admin:root@mongo:27017/test", { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+  })
+  const db = mongoose.connection
+  db.once('open', () => console.log('Connected to Database'))
 })
 
 test('GET /api/responses', async () => {
