@@ -1,0 +1,577 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Survey service API",
+    "description": "Endpoint documentation for the ExpressJS API."
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Survey",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Response",
+      "description": "Endpoints"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/surveys/": {
+      "get": {
+        "tags": [
+          "Survey"
+        ],
+        "description": "Get all surveys",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Survey"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Survey"
+        ],
+        "description": "Create survey.",
+        "parameters": [
+          {
+            "name": "survey",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AddSurvey"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Survey"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/surveys/{survey}": {
+      "get": {
+        "tags": [
+          "Survey"
+        ],
+        "description": "Get survey by ID",
+        "parameters": [
+          {
+            "name": "survey",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the survey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Survey"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Survey"
+        ],
+        "description": "Update survey by ID",
+        "parameters": [
+          {
+            "name": "survey",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "survey",
+            "in": "body",
+            "required": true,
+            "description": "ID of the survey",
+            "schema": {
+              "$ref": "#/definitions/AddSurvey"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Survey"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Survey"
+        ],
+        "description": "Delete survey by ID",
+        "parameters": [
+          {
+            "name": "survey",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the survey"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/surveys/{survey}/responses": {
+      "get": {
+        "tags": [
+          "Survey"
+        ],
+        "description": "Get responses for survey",
+        "parameters": [
+          {
+            "name": "survey",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the survey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Response"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/responses/": {
+      "get": {
+        "tags": [
+          "Response"
+        ],
+        "description": "Get all responses",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Response"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/responses/{response}": {
+      "get": {
+        "tags": [
+          "Response"
+        ],
+        "description": "Get response by ID",
+        "parameters": [
+          {
+            "name": "response",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the response"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Response"
+        ],
+        "description": "Delete response",
+        "parameters": [
+          {
+            "name": "response",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the response"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/responses/{survey}": {
+      "post": {
+        "tags": [
+          "Response"
+        ],
+        "description": "Create response",
+        "parameters": [
+          {
+            "name": "survey",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the survey"
+          },
+          {
+            "name": "response",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AddResponse"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Response"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Survey": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "123456"
+        },
+        "name": {
+          "type": "string",
+          "example": "Dinner in Motion survey"
+        },
+        "description": {
+          "type": "string",
+          "example": "Dinner in Motion survey description"
+        },
+        "visibility": {
+          "type": "string",
+          "example": "private"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "example": "123456"
+              },
+              "question": {
+                "type": "string",
+                "example": "How would you rate your experience?"
+              },
+              "type": {
+                "type": "string",
+                "example": "text"
+              },
+              "options": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "required": {
+                "type": "boolean",
+                "example": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "type": "array",
+          "example": [],
+          "items": {}
+        },
+        "created": {
+          "type": "string",
+          "example": "2022-01-01T00:00:00.000Z"
+        },
+        "updated": {
+          "type": "string",
+          "example": "2022-01-01T00:00:00.000Z"
+        }
+      }
+    },
+    "AddSurvey": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Dinner in Motion survey"
+        },
+        "description": {
+          "type": "string",
+          "example": "Dinner in Motion survey description"
+        },
+        "visibility": {
+          "type": "string",
+          "example": "public"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string",
+                "example": "How would you rate your experience?"
+              },
+              "type": {
+                "type": "string",
+                "example": "text"
+              },
+              "options": {
+                "type": "array",
+                "example": [],
+                "items": {}
+              },
+              "required": {
+                "type": "boolean",
+                "example": false
+              }
+            },
+            "required": [
+              "question",
+              "type",
+              "required"
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "questions"
+      ]
+    },
+    "Response": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "123456"
+        },
+        "surveyTaker": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "example": "123456"
+              },
+              "answer": {
+                "type": "string",
+                "example": "I rate it 10 out of 10"
+              },
+              "question": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "example": "123456"
+                  },
+                  "question": {
+                    "type": "string",
+                    "example": "How would you rate your experience?"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "text"
+                  },
+                  "options": {
+                    "type": "array",
+                    "example": [],
+                    "items": {}
+                  },
+                  "required": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                },
+                "required": [
+                  "question",
+                  "type",
+                  "required"
+                ]
+              }
+            }
+          }
+        },
+        "created": {
+          "type": "string",
+          "example": "2022-03-22T00:00:00.000Z"
+        }
+      }
+    },
+    "AddResponse": {
+      "type": "object",
+      "properties": {
+        "surveyTaker": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "answer": {
+                "type": "string",
+                "example": "I rate it 10 out of 10"
+              },
+              "question": {
+                "type": "object",
+                "properties": {
+                  "question": {
+                    "type": "string",
+                    "example": "How would you rate your experience?"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "text"
+                  },
+                  "options": {
+                    "type": "array",
+                    "example": [],
+                    "items": {}
+                  },
+                  "required": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                },
+                "required": [
+                  "question",
+                  "type",
+                  "required"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "surveyTaker"
+      ]
+    }
+  }
+}

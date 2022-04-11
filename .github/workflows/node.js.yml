@@ -1,0 +1,49 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
+
+jobs:
+  run:
+    name: run
+
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+        options: >-
+              --health-cmd mongo
+              --health-interval 10s
+              --health-timeout 5s
+              --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: CI and build
+        run: |
+          npm ci
+          npm build --if-present
+      
+      - name: Run E2E tests
+        run: npm test
+        env:
+          DATABASE_URL: mongodb://localhost:27017/JestDB
+      
