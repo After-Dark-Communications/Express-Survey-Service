@@ -12,7 +12,7 @@ beforeEach((done) => {
   const db = mongoose.connection
   db.on('error', (error) => console.error(error))
   db.once('open', () => done())
-}, 30000)
+})
 
 test('GET /api/responses', async () => {
   const response = await Response.create({
