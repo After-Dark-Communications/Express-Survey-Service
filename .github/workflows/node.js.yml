@@ -14,9 +14,6 @@ jobs:
     services:
       mongo:
         image: mongo
-        env:
-          MONGO_INITDB_ROOT_USERNAME: admin
-          MONGO_INITDB_ROOT_PASSWORD: root
         ports:
           - 27017:27017
         options: >-
@@ -47,5 +44,5 @@ jobs:
       - run: npm ci
 
       - run: npm build --if-present
-      
+
       - run: npm test
