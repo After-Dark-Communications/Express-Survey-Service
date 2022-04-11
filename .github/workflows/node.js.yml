@@ -9,7 +9,7 @@ on:
 jobs:
   run:
     name: run
-    
+
     runs-on: ubuntu-latest
 
     services:
@@ -42,8 +42,8 @@ jobs:
           npm ci
           npm build --if-present
       
-      -name: test
+      - name: test
         run: npm test
         env:
-          DATABASE_URL=mongodb://localhost:27017/JestDB
+          DATABASE_URL: mongodb://localhost:27017/JestDB
       
