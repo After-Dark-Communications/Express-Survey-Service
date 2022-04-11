@@ -4,7 +4,7 @@ const supertest = require("supertest")
 const Survey = require('../database/models/Survey')
 
 beforeEach((done) => {
-  mongoose.connect("mongodb://localhost:27017/JestDB",
+  mongoose.connect(process.env.DATABASE_URL,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => done())
 })

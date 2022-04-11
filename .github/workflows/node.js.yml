@@ -7,8 +7,8 @@ on:
     branches: [ master, dev ]
 
 jobs:
-  E2E_testing:
-    name: test
+  run:
+    name: run
     runs-on: ubuntu-latest
 
     services:
@@ -27,14 +27,22 @@ jobs:
         node-version: [14.x, 15.x, 16.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Git checkout
+        uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          
-      - run: npm ci
-      - run: npm build --if-present
-      - run: npm test
+
+      - name: ci and build
+        run: |
+          npm ci
+          npm build --if-present
+      
+      -name: test
+        run: npm test
+        env:
+          DATABASE_URL=mongodb://localhost:27017/JestDB
+      

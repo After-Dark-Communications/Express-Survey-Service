@@ -5,7 +5,7 @@ const Survey = require('../database/models/Survey')
 const Response = require('../database/models/Response')
 
 beforeEach((done) => {
-  mongoose.connect("mongodb://localhost:27017/JestDB", { 
+  mongoose.connect(process.env.DATABASE_URL, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true
   })
