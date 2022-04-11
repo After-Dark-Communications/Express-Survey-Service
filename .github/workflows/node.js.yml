@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master, dev, feature/25-run-tests-on-push-or-pull-request ]
+    branches: [ master, dev ]
   pull_request:
     branches: [ master, dev ]
 
