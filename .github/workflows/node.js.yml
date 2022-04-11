@@ -45,5 +45,7 @@ jobs:
 #          mongodb-version: ${{ matrix.mongodb-version }}
 
       - run: npm ci
+
       - run: npm build --if-present
+      
       - run: npm test
