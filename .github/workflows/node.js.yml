@@ -25,7 +25,6 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-#        mongodb-version: ['5.0']
 
     steps:
       - uses: actions/checkout@v3
@@ -35,14 +34,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      
-#      - name: Start MongoDB ${{ matrix.mongodb-version }}
-#        uses: supercharge/mongodb-github-action@1.7.0
-#        with:
-#          mongodb-version: ${{ matrix.mongodb-version }}
 
       - run: npm ci
-
       - run: npm build --if-present
-
       - run: npm test
