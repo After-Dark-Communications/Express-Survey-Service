@@ -37,12 +37,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: ci and build
+      - name: CI and build
         run: |
           npm ci
           npm build --if-present
       
-      - name: test
+      - name: Run E2E tests
         run: npm test
         env:
           DATABASE_URL: mongodb://localhost:27017/JestDB
