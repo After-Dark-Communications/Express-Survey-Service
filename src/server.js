@@ -1,8 +1,9 @@
 const app = require('./app')
 const db = require('./database')
+const port = process.env.PORT || 3000
 
 db.connect(process.env.DATABASE_URL)
 
-app.listen(process.env.PORT, () => {
-    console.log(`listening on port ${process.env.PORT}`)
+app.listen(port, () => {
+    console.log(`listening on port ${port}`)
 })
