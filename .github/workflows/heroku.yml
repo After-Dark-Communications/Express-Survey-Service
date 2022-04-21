@@ -1,16 +1,19 @@
-name: Deploy
+name: Deploy to Heroku
 
 on:
   push:
-    branches: [dev, heroku-deployment]
+    branches: [ dev ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Heroku deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          heroku_api_key: 37adbf9e-6659-4c87-b9c4-8ee93130e9d6
-          heroku_app_name: "q1-survey-service"
-          heroku_email: "jophuijbers2001@gmail.com"
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: q1-survey-service
+          heroku_email: jophuijbers2001@gmail.com
