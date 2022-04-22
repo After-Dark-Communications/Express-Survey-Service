@@ -12,3 +12,5 @@ Add ```.env``` file to root
 ```npm run dev``` to start server with hot-reload
 
 ```npm run swagger-autogen``` to generate swagger documentation
+
+```npm run test``` to run tests
