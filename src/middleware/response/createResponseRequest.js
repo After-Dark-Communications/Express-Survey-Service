@@ -13,6 +13,9 @@ module.exports = function createResponseRequest(req, res, next) {
 
     req.survey.questions.forEach(question => {
         if (question.required) {
+            if (!req.body.answers) {
+                return res.status(400).json({message: 'Survey response must provide an answer to all required questions'})
+            }
             const answer = req.body.answers.find(answer => answer.question._id == question._id)
             if (!answer) {
                 return res.status(400).json({message: 'Survey response must provide an answer to all required questions'})
