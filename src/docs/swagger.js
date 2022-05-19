@@ -9,7 +9,7 @@ const setup = {
         title: "Survey service API",
         description: "Endpoint documentation for the ExpressJS API."
     },
-    host: "localhost:3000",
+    host: "q1-survey-service.herokuapp.com",
     basePath: "/api",
     schemes: ['http', 'https'],
     consumes: ['application/json'],
